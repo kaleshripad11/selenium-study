@@ -14,13 +14,7 @@ public class Dashboard_TEST {
 	 * 4) Provide password  - admin
 	 * 5) Click on Login button 
 	 * 6) Verify the title of dashboard page Exp title : Dashboard / nopCommerce administration
-	 * 7) Verify Dasboad
-	 * Data - 
-	 * text1 = Email
-	 * text2 = Password
-	 * btn xpath = /html/body/div[6]/div/div/div/div/div[2]/div[1]/div/form/div[3]/button
-	 * chkbox = RememberMe
-	 * dashboard = /html/body/div[3]/div[1]/div[1]/h1
+	 * 7) Verify Dashboard
 	 */
 	
 	public static WebDriver driver = new FirefoxDriver();
