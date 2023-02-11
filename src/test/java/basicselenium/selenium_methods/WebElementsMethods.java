@@ -1,4 +1,4 @@
-package basicselenium;
+package basicselenium.selenium_methods;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

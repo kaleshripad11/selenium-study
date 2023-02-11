@@ -1,4 +1,4 @@
-package basicselenium;
+package basicselenium.selenium_methods;
 
 import java.util.Set;
 
