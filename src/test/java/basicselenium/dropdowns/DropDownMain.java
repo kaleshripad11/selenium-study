@@ -6,12 +6,14 @@ public class DropDownMain {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		BasicDropDown bdd = new BasicDropDown();
 		bdd.setupWebDriver();
 		bdd.locateDropDown();
 		bdd.getItemsInDropDown();
+		Thread.sleep(2000);
+		bdd.dropDownMethods();
 		bdd.driver.quit();
 	}
 
