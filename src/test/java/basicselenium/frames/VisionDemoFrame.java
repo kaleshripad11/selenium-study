@@ -28,11 +28,11 @@ public class VisionDemoFrame {
 		}
 	}
 	
-	void fillUpForm() {
-		driver.findElement(By.cssSelector("span[contains(text(),'Vision IDE']")).click();
+	void fillUpForm(){
+		driver.findElement(By.xpath("//span[text()='Hi, I am the UI.Vision IDE']")).click();
 	}
 	
-	void frameOperations() {
+	void frameOperations() throws InterruptedException  {
 		driver.switchTo().frame(driver.findElement(By.xpath("//frame[@src='frame_1.html']")));
 		driver.findElement(By.xpath("//div/input[@name='mytext1']")).sendKeys("First Frame");
 		driver.switchTo().defaultContent();
@@ -44,6 +44,8 @@ public class VisionDemoFrame {
 		driver.switchTo().frame(driver.findElement(By.xpath("//frame[@src='frame_3.html']")));
 		driver.findElement(By.xpath("//div/input[@name='mytext3']")).sendKeys("Third Frame");
 		driver.switchTo().frame(0);
+		fillUpForm();
+		Thread.sleep(10);
 		driver.switchTo().defaultContent();
 		
 		driver.switchTo().frame(driver.findElement(By.xpath("//frame[@src='frame_4.html']")));
