@@ -29,7 +29,7 @@ public class VisionDemoFrame {
 	}
 	
 	void fillUpForm() {
-		driver.findElement(By.cssSelector("div.uHMk6b")).click();
+		driver.findElement(By.cssSelector("span[contains(text(),'Vision IDE']")).click();
 	}
 	
 	void frameOperations() {

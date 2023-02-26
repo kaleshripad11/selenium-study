@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import java.time.Duration;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebElement;
 
 public class BasicAlertDemo {
 	/*
