@@ -15,7 +15,6 @@ public class DatePickerDemo {
 	 * 3. First store month and year in separate string variables
 	 * 4. Then extract all days available in that month and store it in a list variable
 	 * 5. Compare date with date available in the list
-	 * 
 	 */
 	
 	WebDriver driver;
