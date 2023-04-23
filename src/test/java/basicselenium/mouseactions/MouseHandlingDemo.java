@@ -29,6 +29,10 @@ public class MouseHandlingDemo {
 	void mouseRightClickDemo() {
 		
 	}
+	
+	void mouseDoubleClickDemo() {
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
