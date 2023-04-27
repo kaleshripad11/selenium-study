@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Test_BlazeDemo_Ticket {
@@ -14,7 +15,9 @@ public class Test_BlazeDemo_Ticket {
 	
 	WebDriver driver;
 	List<WebElement> source,destination;
-	List<WebElement> price;
+	List<WebElement> rows,colums;
+	String price;
+	int total_rows, total_columns;
 
 	public Test_BlazeDemo_Ticket(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -38,10 +41,31 @@ public class Test_BlazeDemo_Ticket {
 	}
 	
 	void findLowestFaredTicket() {
-		for(int i=1;i<6;i++) {
-			price = driver.findElements(By.xpath("//tbody/tr["+i+"]/td[6]"));
-			System.out.println(price.size());
+		// First get all rows and columns count
+		rows = driver.findElements(By.xpath("//tbody/tr"));
+		
+		total_rows = driver.findElements(By.xpath("//tbody/tr")).size();
+		total_columns = driver.findElements(By.xpath("//tbody/tr/td/input")).size();
+		
+		System.out.println("Total rows - "+total_rows+", "+"Total columns - "+total_columns);
+		//System.out.println(rows.toArray().toString());
+		
+		try{
+			for(int j=1;j<=total_columns;j++) {
+				price = driver.findElement(By.xpath("//tbody/tr["+j+"]/td[6]")).getText();
+				System.out.println(price.replace("$", ""));
+			}
 		}
+		catch(Exception ex) {
+			System.out.println("Thrown : "+ex.getMessage());
+		}
+		
+		
+		System.out.println(Arrays.sort(price));
+		/*for(int i = 0;i<price.length();i++) {
+			System.out.println(price.toString());
+		}*/
+		
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
