@@ -16,7 +16,7 @@ public class Test_BlazeDemo_Ticket {
 	WebDriver driver;
 	List<WebElement> source,destination;
 	List<WebElement> rows,colums;
-	String price;
+	String[] price;
 	int total_rows, total_columns;
 
 	public Test_BlazeDemo_Ticket(WebDriver driver) {
@@ -52,16 +52,19 @@ public class Test_BlazeDemo_Ticket {
 		
 		try{
 			for(int j=1;j<=total_columns;j++) {
-				price = driver.findElement(By.xpath("//tbody/tr["+j+"]/td[6]")).getText();
-				System.out.println(price.replace("$", ""));
+				price[j] = driver.findElement(By.xpath("//tbody/tr["+j+"]/td[6]")).getText();
+				System.out.println(price[j].replace("$", ""));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println("Thrown : "+ex.getMessage());
 		}
 		
+		for(int i = 0;i<price.length;i++) {
+			Integer.parseInt(price[i]);
+		}
 		
-		System.out.println(Arrays.sort(price));
+		//System.out.println(Arrays.sort(price));
 		/*for(int i = 0;i<price.length();i++) {
 			System.out.println(price.toString());
 		}*/
