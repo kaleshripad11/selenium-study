@@ -1,12 +1,18 @@
 package basicselenium.keyboardactions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class KeyboardActionsDemo {
 	
 	/*
 	 * Demonstrate keyboard actions
+	 * Syntax to use Combinational Keys
+	 * ActionsObj.keyDown(Keys.KEY).sendKeys(key).keyUp(Keys.KEY).build().perform();
+	 * ex => actionsObj.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).build().perform();
 	 */
 	
 	WebDriver driver;
@@ -20,16 +26,30 @@ public class KeyboardActionsDemo {
 	}
 
 	void copyPasteText() {
-		// First will put string in first textbox
+		// Locate source and destination fields
 		driver.findElement(By.id("inputText1")).sendKeys("Selenium demo");
+		
+		// Action sequence = CTRL+A => CTRL+C => TAB => CTRL+V
 		Actions act = new Actions(driver);
 		
-		// act.keyDown()
+		// Copy text => CTRL+A
+		act.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
+		act.keyDown(Keys.CONTROL).sendKeys("c").keyUp(Keys.CONTROL).build().perform();
+		
+		// Move focus to second text field
+		act.keyDown(Keys.TAB).keyDown(Keys.TAB).build().perform();
+		
+		// Paste text => CTRL + V
+		act.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).build().perform();
+		//act.keyDown()
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-
+		KeyboardActionsDemo kb_demo = new KeyboardActionsDemo(new FirefoxDriver());
+		kb_demo.copyPasteText();
+		Thread.sleep(1000);
+		kb_demo.driver.quit();
 	}
 
 }
