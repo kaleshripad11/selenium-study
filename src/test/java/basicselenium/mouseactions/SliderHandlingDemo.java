@@ -5,7 +5,6 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.Point;
@@ -26,21 +25,30 @@ public class SliderHandlingDemo {
 
 	void sliderDemo() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebElement slider_left = driver.findElement(By.xpath("//*[@id='slider-range']/span[1]"));
-		WebElement slider_right = driver.findElement(By.xpath("//*[@id='slider-range']/span[2]"));
+		
+		/* 
+		 * // Set window size using Point class
+		 * Point p = new Point(0, 0); driver.manage().window().setPosition(p);
+		 * System.out.println(driver.manage().window().getPosition());
+		 */
 		
 		// Get location of left slider
+		WebElement slider_left = driver.findElement(By.xpath("//*[@id='slider-range']/span[1]"));
 		System.out.println("Slider current location from left : "+slider_left.getLocation());
-		System.out.println("Slider current location from right : "+slider_right.getLocation());
-		
-		// Set window size using Point class
-		Point p = new Point(100, 700);
-		driver.manage().window().setPosition(p);
 		
 		Actions act = new Actions(driver);
+		
+		// Drag left slider
 		act.dragAndDropBy(slider_left, 260, 46).build().perform();
-		// act.dragAndDropBy(slider_right, 996-20, 46).build().perform();
-		// Location after dragging
+		
+		// Get location of right slider
+		WebElement slider_right = driver.findElement(By.xpath("//*[@id='slider-range']/span[2]"));
+		System.out.println("Slider current location from right : "+slider_right.getLocation());
+		
+		// Drag right slider
+		act.dragAndDropBy(slider_right, -100, 46).build().perform();
+		
+		
 		System.out.println("Slider current location from left : "+slider_left.getLocation());
 		System.out.println("Slider current location from right : "+slider_right.getLocation());
 		
