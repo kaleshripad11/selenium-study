@@ -61,14 +61,15 @@ public class KeyboardActionsDemo {
 		 *  Ex : act.keyDown(Keys.CONTROL).sendKeys("X")
 		 */
 		act.keyDown(Keys.COMMAND).sendKeys("A").keyUp(Keys.COMMAND).perform();
+		
 		act.keyDown(Keys.COMMAND).sendKeys("C").keyUp(Keys.COMMAND).perform();
 		
 		// Move focus to second text field
 		act.keyDown(Keys.TAB).keyUp(Keys.TAB).perform();
-		System.out.println("Pasting text");
+
 		// Paste text => CTRL + V
 		act.keyDown(Keys.COMMAND).sendKeys("V").keyUp(Keys.COMMAND).perform();
-		System.out.println("Done");
+	
 		//Thread.sleep(1000);
 	}
 	
