@@ -8,3 +8,9 @@
 *.txt
 .settings/
 .settings
+*.xlsx
+*.text
+*.csv
+*.png
+*.jpeg
+*.jpg

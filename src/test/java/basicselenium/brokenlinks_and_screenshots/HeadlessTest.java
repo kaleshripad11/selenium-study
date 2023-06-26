@@ -17,17 +17,16 @@ public class HeadlessTest {
 	 * To perform headless test Options class can be used
 	 */
 	
-	
-	
 	WebDriver driver;
-	
-	public HeadlessTest(WebDriver d) {
+	public HeadlessTest() {
 		// TODO Auto-generated constructor stub
 		
-		// Below two lines code will run this code in Headless mode
-		
-		//options.addArguments("--headless=true");
-		driver = d;
+	}
+	
+	void setupDriver() {
+		FirefoxOptions fOptions = new FirefoxOptions();
+		fOptions.addArguments("--headless");
+		driver = new FirefoxDriver();
 		driver.get("https://testautomationpractice.blogspot.com/");
 		driver.manage().window().maximize();
 	}
@@ -60,11 +59,15 @@ public class HeadlessTest {
 		FileUtils.copyFile(src, dest);
 	}
 	
+	
+	
+	
 	public static void main(String[] args) throws IOException  {
-		FirefoxOptions options = new FirefoxOptions();
+		//FirefoxOptions options = new FirefoxOptions();
 		// options.setHeadless(true); //=> Deprecated method setHeadless();
-		options.addArguments("-headless");
-		HeadlessTest headless = new HeadlessTest(new FirefoxDriver());
+		//options.addArguments("-headless");
+		HeadlessTest headless = new HeadlessTest();
+		headless.setupDriver();
 		headless.getFullPageScreenshot();
 		headless.getPartialScreenshot();
 		headless.driver.quit();
