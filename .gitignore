@@ -15,4 +15,5 @@
 *.jpeg
 *.jpg
 /data/
+*/data/*
 /screenshots/
