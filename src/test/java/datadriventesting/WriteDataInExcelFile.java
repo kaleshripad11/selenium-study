@@ -53,7 +53,7 @@ public class WriteDataInExcelFile {
 				cell = scan.nextLine();
 				row.createCell(j).setCellValue(cell);
 			}
-			System.out.println("One row added");
+			System.out.println("New row added");
 		}
 		
 		
