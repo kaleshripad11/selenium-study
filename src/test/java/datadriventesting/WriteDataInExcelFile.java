@@ -86,7 +86,7 @@ public class WriteDataInExcelFile {
 		WriteDataInExcelFile writeXcelFile = new WriteDataInExcelFile();
 		
 		// Call to createFile(arg) function
-		writeXcelFile.createFile(System.getProperty("user.dir")+"//data//TestData.xlsx");
+		writeXcelFile.createFile(System.getProperty("user.dir")+"//data//OutPutData.xlsx");
 		
 		// Call to writeDataToFile();
 		writeXcelFile.writeDataToFile();
