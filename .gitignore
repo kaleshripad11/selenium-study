@@ -17,4 +17,6 @@
 /data/
 */data/*
 /screenshots/
+*/test-output/*
+test-output/*
 /test-output/*
