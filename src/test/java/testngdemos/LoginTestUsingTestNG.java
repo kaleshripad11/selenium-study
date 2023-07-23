@@ -29,7 +29,7 @@ public class LoginTestUsingTestNG {
   
   @Test
   public void validateHomePageAfterLogin() {
-	  String homepageText = "JPetStore Demos";
+	  String homepageText = "JPetStore Demo";
 	  String actualText = driver.findElement(By.xpath("//*[@id=\"masthead\"]/div[1]/div/div/header/h1")).getText();
 	  
 	  if(actualText.equals(homepageText)) {
