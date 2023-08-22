@@ -6,6 +6,7 @@
 			<class name="testngdemos.LoginTestUsingTestNG"/>
 			<class name="testngdemos.FirstTestNGDemo"/>
 			<class name="testngdemos.MethodPriorities"/>
+			<class name="testngdemos.TestNgAnnotations"/>
 		</classes>
 	</test>
 </suite>
