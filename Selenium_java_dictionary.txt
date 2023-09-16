@@ -1,5 +1,0 @@
-webdriver
-selenium
-textfield
-javascript
-checkboxes
