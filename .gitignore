@@ -5,7 +5,7 @@
 .project
 .classpath
 */.settings/*
-*.txt
+#*.txt
 .settings/
 .settings
 *.xlsx
