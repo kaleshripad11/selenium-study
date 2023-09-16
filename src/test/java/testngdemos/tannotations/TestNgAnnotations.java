@@ -1,5 +1,7 @@
 package testngdemos.tannotations;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -30,7 +32,7 @@ public class TestNgAnnotations {
 	
 	@Test
 	void testPerformSum() {
-		Assert.assertEquals(performSum(10, 5), 15);
+		AssertJUnit.assertEquals(performSum(10, 5), 15);
 	}
 	
 	@AfterTest
@@ -38,6 +40,7 @@ public class TestNgAnnotations {
 		System.out.println("Closing test");
 	}
 	
+	@Test
 	@AfterSuite
 	void test() {
 		System.out.println("After suite");

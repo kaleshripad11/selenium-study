@@ -1,10 +1,7 @@
 package testngdemos.tannotations;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.*;
 
-public class BeforeAndAfterClass_Annotation {
+public class BeforeAndAfterClass_Annotation2 {
 	/*
 	 * BeforeClass & AfterClass Annotations:
 	 * There are some prerequisite methods which are required to be executed before starting the test methods & after ending the test methods
