@@ -5,7 +5,7 @@
 .project
 .classpath
 */.settings/*
-#*.txt
+*.txt
 .settings/
 .settings
 *.xlsx
@@ -14,9 +14,8 @@
 *.png
 *.jpeg
 *.jpg
-#/data/
-#*/data/*
-*/data/*.xlsx
+/data/
+*/data/*
 /screenshots/
 */test-output/*
 test-output/*
