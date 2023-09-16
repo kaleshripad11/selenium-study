@@ -14,8 +14,9 @@
 *.png
 *.jpeg
 *.jpg
-/data/
-*/data/*
+#/data/
+#*/data/*
+*/data/*.xlsx
 /screenshots/
 */test-output/*
 test-output/*
