@@ -6,5 +6,8 @@ public class TestNg_Groups {
 	 * To do this, add parameter "groups" to the "test" annotation
 	 * Syntax : @Test(groups={"Groupname1", "Groupname2",...})
 	 */
+	
+		
+	
 
 }

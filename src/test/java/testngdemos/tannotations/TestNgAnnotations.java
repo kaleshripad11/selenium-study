@@ -1,10 +1,11 @@
-package testngdemos;
+package testngdemos.tannotations;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class TestNgAnnotations {
 	/*
+	 * TestNG Hierarchy => Suite -> Test -> Class -> Test
 	 * TestNg provide below annotations : 
 	 * 1. @BeforeSuite
 	 * 2. @AfterSuite
