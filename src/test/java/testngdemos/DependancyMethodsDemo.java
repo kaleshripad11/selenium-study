@@ -17,7 +17,8 @@ public class DependancyMethodsDemo {
 	@Test(priority=2,dependsOnMethods = {"openBrowser"})
 	void openApp() {
 		/*
-		 * This method is dependant on "openBrowser()". If "openBrowser()" assert fails
+		 * This method is dependent on "openBrowser()". If "openBrowser()" assert fails, all the remaining methods will be skipped,
+		 * As all remaining methods dependent on their previous methods
 		 */
 		System.out.println("Loading the application...");
 		assertEquals(false, true);
