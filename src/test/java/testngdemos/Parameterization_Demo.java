@@ -1,4 +1,13 @@
 package testngdemos;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.*;
+
+import static org.testng.Assert.assertEquals;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class Parameterization_Demo {
 	
@@ -23,5 +32,60 @@ public class Parameterization_Demo {
 	 * 
 	 * indices parameter can be used to use specific element for the given index as parameter to test method
 	 */
-
+	
+	WebDriver driver;
+	
+	Parameterization_Demo() {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+	}
+	
+	@BeforeTest
+	void openApplicationInBrowser() {
+		driver.get("https://www.saucedemo.com/");
+	}
+	
+	@Test(priority=1, dataProvider="swaglabs")
+	void loginTest(String username, String password) {
+		String homePage = "Products";
+		driver.findElement(By.id("user-name")).sendKeys(username);
+		driver.findElement(By.id("password")).sendKeys(password);
+		driver.findElement(By.id("login-button")).click();
+		String actualTitle = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).getText();
+		assertEquals(homePage, actualTitle);
+	}
+	
+	
+	@DataProvider(name="swaglabs")
+	String[][] jpetStoreLoginData(){
+		String[][] credentials = {
+				{"standard_user","secret_sauce"}, //Only valid & correct credential
+				{"stduser","secret_sauce"},
+				{"standerd_user","secret_sauces"},
+				{"locked_out_user","secret_sauce"},
+				{"Standard_user","secret_sauce"},
+				{"StandardUser","secret_sauce"},
+				{"StanderDuser","secret_sauce"},
+				{"standard_user","secretsauce"},
+				{"standard_user","Secret_sauce"},
+				{"standard_user","secret_Sauce"},
+		};
+		return credentials;
+	}
+	
+	@Test(priority=2)
+	void logout() {
+		//driver.findElement(By.xpath("//*/div[@class='bm-burger-button']//button[@id='react-burger-menu-btn']")).click();
+		//driver.findElement(By.id("react-burger-menu-btn")).click();
+		//driver.findElement(By.xpath("//*/div/nav[@class='bm-item-list']//a[@id='logout_sidebar_link']")).click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.id("react-burger-menu-btn")).click();
+	    driver.findElement(By.id("logout_sidebar_link")).click();
+	}
+	
+	@AfterTest
+	void closeBrowser() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.quit();
+	}
 }
