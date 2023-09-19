@@ -35,24 +35,22 @@ public class Parameterization_Demo {
 	
 	WebDriver driver;
 	
-	Parameterization_Demo() {
+	@BeforeClass
+	void setupWebDriver() {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 	}
 	
-	@BeforeTest
-	void openApplicationInBrowser() {
-		driver.get("https://www.saucedemo.com/");
-	}
-	
 	@Test(priority=1, dataProvider="swaglabs")
 	void loginTest(String username, String password) {
+		driver.get("https://www.saucedemo.com/");
 		String homePage = "Products";
 		driver.findElement(By.id("user-name")).sendKeys(username);
 		driver.findElement(By.id("password")).sendKeys(password);
 		driver.findElement(By.id("login-button")).click();
 		String actualTitle = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).getText();
 		assertEquals(homePage, actualTitle);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
 	}
 	
 	
@@ -66,26 +64,25 @@ public class Parameterization_Demo {
 				{"Standard_user","secret_sauce"},
 				{"StandardUser","secret_sauce"},
 				{"StanderDuser","secret_sauce"},
-				{"standard_user","secretsauce"},
+				{"standard_user","secret_sauce"},
 				{"standard_user","Secret_sauce"},
 				{"standard_user","secret_Sauce"},
 		};
 		return credentials;
 	}
 	
-	@Test(priority=2)
+	@Test(dependsOnMethods= {"loginTest"})
 	void logout() {
 		//driver.findElement(By.xpath("//*/div[@class='bm-burger-button']//button[@id='react-burger-menu-btn']")).click();
 		//driver.findElement(By.id("react-burger-menu-btn")).click();
 		//driver.findElement(By.xpath("//*/div/nav[@class='bm-item-list']//a[@id='logout_sidebar_link']")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.id("react-burger-menu-btn")).click();
 	    driver.findElement(By.id("logout_sidebar_link")).click();
 	}
 	
-	@AfterTest
+	@AfterClass
 	void closeBrowser() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.quit();
 	}
 }
