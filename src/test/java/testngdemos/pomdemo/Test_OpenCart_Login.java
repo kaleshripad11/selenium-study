@@ -1,8 +1,6 @@
 package testngdemos.pomdemo;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -10,7 +8,7 @@ import org.testng.annotations.Test;
 public class Test_OpenCart_Login {
 	
 	WebDriver driver;
-	Page_OpenCart_Login login;
+	Page_OpenCart_Login login; 	// Login page object - contains all login page locators & action methods for those locators
 	
 	public Test_OpenCart_Login() {
 		// TODO Auto-generated constructor stub
