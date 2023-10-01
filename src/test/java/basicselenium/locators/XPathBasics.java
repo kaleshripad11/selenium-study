@@ -30,7 +30,7 @@ public class XPathBasics {
 	
 	void locateElementsWithXPathFunctions() {
 		//contains() method will locate elements based on partial strings metioned in the xpaths
-		System.out.println(driver.findElement(By.xpath("//span[contains(text(),'how to automate')]")).getText());
+		System.out.println(driver.findElement(By.xpath("//span[@contains(text(),'how to automate')]")).getText());
 		
 		//driver.findElement(By.xpath("//*[@id='userId']")).sendKeys("xyz@example.com"); 
 		// Use text() method to locate elements using text present in element
