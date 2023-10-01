@@ -1,13 +1,22 @@
 package testngdemos;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import static org.testng.Assert.assertEquals;
 
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class Parameterization_Demo {
 	
@@ -33,56 +42,71 @@ public class Parameterization_Demo {
 	 * indices parameter can be used to use specific element for the given index as parameter to test method
 	 */
 	
+	
 	WebDriver driver;
+	public WebDriverWait wait;
 	
-	@BeforeClass
-	void setupWebDriver() {
-		driver = new FirefoxDriver();
+	WebElement userText, userPass, btnLogin, linkLogout;
+	String nopCommerce = "https://demo.nopcommerce.com/login";
+
+
+	public Parameterization_Demo() {
+		System.out.println("Initiating webdriver");
+		// TODO Auto-generated constructor stub
+		driver = new EdgeDriver();
 		driver.manage().window().maximize();
+		
 	}
 	
-	@Test(priority=1, dataProvider="swaglabs")
-	void loginTest(String username, String password) {
-		driver.get("https://www.saucedemo.com/");
-		String homePage = "Products";
-		driver.findElement(By.id("user-name")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(password);
-		driver.findElement(By.id("login-button")).click();
-		String actualTitle = driver.findElement(By.xpath("//*[@id=\"header_container\"]/div[2]/span")).getText();
-		assertEquals(homePage, actualTitle);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-	}
-	
-	
-	@DataProvider(name="swaglabs")
-	String[][] jpetStoreLoginData(){
-		String[][] credentials = {
-				{"standard_user","secret_sauce"}, //Only valid & correct credential
-				{"stduser","secret_sauce"},
-				{"standerd_user","secret_sauces"},
-				{"locked_out_user","secret_sauce"},
-				{"Standard_user","secret_sauce"},
-				{"StandardUser","secret_sauce"},
-				{"StanderDuser","secret_sauce"},
-				{"standard_user","secret_sauce"},
-				{"standard_user","Secret_sauce"},
-				{"standard_user","secret_Sauce"},
-		};
-		return credentials;
+	@Test(priority=1,dataProvider="nopc")
+	void loginTest(String name, String pass) {
+		driver.get(nopCommerce);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		
+		System.out.println("Starting test");
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Email"))).clear();
+		driver.findElement(By.id("Email")).sendKeys(name);
+			
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Password"))).clear();
+		driver.findElement(By.id("Password")).sendKeys(pass);
+			
+		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//button[normalize-space()='Log in']")))).click();
+		
+		String expText = "nopCommerce demo store";
+		String actText = driver.getTitle();
+		
+		Assert.assertEquals(expText, actText);
 	}
 	
 	@Test(dependsOnMethods= {"loginTest"})
-	void logout() {
-		//driver.findElement(By.xpath("//*/div[@class='bm-burger-button']//button[@id='react-burger-menu-btn']")).click();
-		//driver.findElement(By.id("react-burger-menu-btn")).click();
-		//driver.findElement(By.xpath("//*/div/nav[@class='bm-item-list']//a[@id='logout_sidebar_link']")).click();
-		driver.findElement(By.id("react-burger-menu-btn")).click();
-	    driver.findElement(By.id("logout_sidebar_link")).click();
+	void logOut() {
+		System.out.println("Logout");
+		wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//a[normalize-space()='Log out']")))).click();
 	}
 	
 	@AfterClass
 	void closeBrowser() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.quit();
 	}
+	
+	@DataProvider(name="nopc")
+	String[][] jpetStoreLoginData(){
+		String[][] credentials = {
+				{"admin@yourstore.com","admin"}, 	//JPetStore Demo valid login
+				{"demouser@2023","demo@123"},	//JPetStore Demo valid login
+				{"admin","Adm1n123"},
+				{"john.wick@example.com","john@123"},
+				{"testNguser@example.com","test123"},
+				{"Admin","admin123"},
+				{"Admin","Admin@123"},
+				{"admin","Admin@123"},
+				{"Admin","admin@123"},
+				{"TestNg1@test","testng1@123"},
+				{"admin","Admin@123"},
+				{"Admin","admin@123"},
+		};
+		return credentials;
+	} 
+	
 }
