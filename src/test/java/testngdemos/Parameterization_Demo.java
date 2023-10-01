@@ -109,6 +109,7 @@ public class Parameterization_Demo {
 		return credentials;
 	} 
 	
+<<<<<<< HEAD
 	/*
 	WebDriver driver;
 	
@@ -154,4 +155,6 @@ public class Parameterization_Demo {
 		return data;
 	}
 	*/
+=======
+>>>>>>> qa
 }
