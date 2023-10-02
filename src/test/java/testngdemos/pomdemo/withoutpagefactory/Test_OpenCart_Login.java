@@ -1,4 +1,4 @@
-package testngdemos.pomdemo;
+package testngdemos.pomdemo.withoutpagefactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,6 +13,8 @@ public class Test_OpenCart_Login {
 	public Test_OpenCart_Login() {
 		// TODO Auto-generated constructor stub
 		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.opencart.com/index.php?route=account/login");
 	}
 
 	@Test

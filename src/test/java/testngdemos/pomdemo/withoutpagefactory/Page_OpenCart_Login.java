@@ -1,4 +1,4 @@
-package testngdemos.pomdemo;
+package testngdemos.pomdemo.withoutpagefactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 
@@ -18,9 +18,7 @@ public class Page_OpenCart_Login {
 	// Instantiate driver
 	public Page_OpenCart_Login(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;			//Instantiate webdriver
-		this.driver.manage().window().maximize();
-		this.driver.get("https://demo.opencart.com/index.php?route=account/login");
+		this.driver = driver;			//Instantiate webdriver from test class
 	}
 	
 	
