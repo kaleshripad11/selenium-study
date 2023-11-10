@@ -1,4 +1,6 @@
 package testngdemos.assertionss;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.testng.asserts.SoftAssert;
 import org.testng.annotations.*;
 
@@ -19,23 +21,23 @@ public class SoftAssertions_Demo {
 	@Test(priority=1)
 	void validateNumbers() {
 		int x=10,y=5;
-		softAssert.assertTrue(true);
-		softAssert.assertEquals((x>y), false);;
+		AssertJUnit.assertTrue(true);
+		AssertJUnit.assertEquals((x>y), false);;
 	}
 	
 	@Test(priority=2)
 	void validateNumbersWithBooleanParameters() {
-		softAssert.assertEquals(true, true);
-		softAssert.assertEquals('X', 'Y');
-		softAssert.assertEquals(10, 100);
-		softAssert.assertEquals(100.01, 100.01);
+		AssertJUnit.assertEquals(true, true);
+		AssertJUnit.assertEquals('X', 'Y');
+		AssertJUnit.assertEquals(10, 100);
+		AssertJUnit.assertEquals(100.01, 100.01);
 		softAssert.assertAll();
 		System.out.println("Ptint MSG");
 	}
 
 	@Test(priority=3)
 	void validateFloats() {
-		softAssert.assertEquals(100.01, 100.01);
+		AssertJUnit.assertEquals(100.01, 100.01);
 		System.out.println("Ptint MSG");
 	}
 }
